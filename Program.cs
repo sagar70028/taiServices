@@ -11,6 +11,8 @@ builder.Services.AddSingleton<IPdfService, PdfService>();
 //await pdfService.InitAsync();
 
 var app = builder.Build();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://0.0.0.0:{port}");
 
 var pdfService = app.Services.GetRequiredService<IPdfService>();
 await pdfService.InitAsync();
